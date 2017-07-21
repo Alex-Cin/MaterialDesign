@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ，只能给 使用 这个 behavior 的  控件 传递参数 -->
+    <declare-styleable name="FadeActionBehavior">
+        <!-- 顶部视图的 资源 id -->
+        <attr name="fb_dependentViewId" format="reference"/>
+        <attr name="fb_marginLeft" format="dimension"/>
+        <attr name="fb_marginRight" format="dimension"/>
+        <attr name="fb_marginTop" format="dimension"/>
+        <attr name="fb_marginBottom" format="dimension"/>
+    </declare-styleable>
+
+    <string name="behavior_fade_action">org.alex.bahavior.fadeaction.FadeActionBehavior</string>
+</resources>

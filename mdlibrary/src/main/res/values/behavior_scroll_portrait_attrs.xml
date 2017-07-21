@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ScrollPortraitBehavior">
+        <attr name="sb_dependentViewId" format="reference"/>
+
+        <attr name="sb_targetX" format="dimension"/>
+        <attr name="sb_targetY" format="dimension"/>
+        <attr name="sb_targetWidth" format="dimension"/>
+        <attr name="sb_targetHeight" format="dimension"/>
+        <attr name="sb_offsetY" format="dimension"/>
+
+    </declare-styleable>
+</resources>

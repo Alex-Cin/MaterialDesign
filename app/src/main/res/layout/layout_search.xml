@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content">
+
+
+    <!--shape_oval_left_1-->
+    <View
+        android:id="@+id/search_runner"
+        android:layout_width="match_parent"
+        android:src="@drawable/ic_search"
+        android:background="@drawable/shape_oval_left_1"
+        android:layout_height="36dp"/>
+
+    <ImageView
+        android:id="@+id/search_logo"
+        android:layout_width="18dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginTop="9dp"
+        android:src="@drawable/ic_search"
+        android:layout_height="18dp"/>
+</RelativeLayout>

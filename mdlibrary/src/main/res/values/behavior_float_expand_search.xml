@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="FloatExpandSearchBehavior">
+        <attr name="fesb_dependentViewId" format="reference"/>
+        <attr name="fesb_targetY" format="dimension"/>
+        <attr name="fesb_offsetY" format="dimension"/>
+    </declare-styleable>
+
+</resources>
