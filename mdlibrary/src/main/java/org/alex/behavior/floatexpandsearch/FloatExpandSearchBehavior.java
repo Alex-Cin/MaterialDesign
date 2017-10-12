@@ -160,7 +160,7 @@ public class FloatExpandSearchBehavior extends CoordinatorLayout.Behavior<View> 
         childLayoutParams.topMargin = (int) (childTopMargin * progress);
         childLayoutParams.topMargin = (childLayoutParams.topMargin >= targetY) ? childLayoutParams.topMargin : targetY;
         if (progress == 0 && lastTopMargin == 0 && child.getY() == targetY) {
-            return;
+//            return;
         }
         LogTrack.i("" + progress);
         lastTopMargin = childLayoutParams.topMargin;
