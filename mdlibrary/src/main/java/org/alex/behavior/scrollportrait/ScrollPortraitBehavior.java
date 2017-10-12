@@ -108,6 +108,10 @@ public class ScrollPortraitBehavior extends CoordinatorLayout.Behavior<View> imp
         return (dependentViewWeakReference == null) ? null : dependentViewWeakReference.get();
     }
 
+
+    private float lastProgress = -1F;
+    private float lastTopMargin = -1F;
+
     private void offsetChildView(int verticalOffset) {
         if (getDependentView() == null || coordinatorLayout == null || child == null) {
             return;
@@ -119,9 +123,9 @@ public class ScrollPortraitBehavior extends CoordinatorLayout.Behavior<View> imp
         childY = (childY < 0) ? child.getY() : childY;
         progress = (dependencyHeight - verticalOffset - offsetY) * 100 / (dependencyHeight - offsetY);
         progress *= 0.01F;
-
         final CoordinatorLayout.LayoutParams childLayoutParams = (CoordinatorLayout.LayoutParams) child.getLayoutParams();
         childTopMargin = (childTopMargin < 0) ? childLayoutParams.topMargin : childTopMargin;
+
         /**
          * 最终大小  ÷  原始 大小
          */
@@ -131,6 +135,13 @@ public class ScrollPortraitBehavior extends CoordinatorLayout.Behavior<View> imp
          */
         float scaleProgress = scale + (1 - scale) * progress;
 
+        if (progress == 0 && scaleProgress == scale && lastTopMargin == 0 && child.getY() == targetY) {
+            return;
+        }
+        LogTrack.i(childLayoutParams.topMargin + "  " + childY + "  " + child.getY() + "  " + targetY);
+        lastTopMargin = childLayoutParams.topMargin;
+        lastProgress = progress;
+        //LogTrack.w(progress + "  " + scaleProgress + "  " + verticalOffset + "  " + scale + "  " + childLayoutParams.topMargin);
         ViewCompat.setScaleY(child, scaleProgress);
         ViewCompat.setScaleX(child, scaleProgress);
 
@@ -139,7 +150,7 @@ public class ScrollPortraitBehavior extends CoordinatorLayout.Behavior<View> imp
         ViewCompat.setX(child, newX);
         ViewCompat.setY(child, newY);
         childLayoutParams.topMargin = (int) (childTopMargin * progress);
-        LogTrack.i(progress + "  " + scaleProgress + "  " + childLayoutParams.topMargin);
+
         child.setLayoutParams(childLayoutParams);
         if (progress == 0) {
             ViewCompat.postOnAnimationDelayed(child, new Runnable() {

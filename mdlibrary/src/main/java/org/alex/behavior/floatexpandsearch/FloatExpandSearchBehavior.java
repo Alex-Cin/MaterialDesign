@@ -139,6 +139,8 @@ public class FloatExpandSearchBehavior extends CoordinatorLayout.Behavior<View> 
         lastProgress = progress;
     }
 
+    private float lastTopMargin = -1;
+
     private void offsetChildView(int verticalOffset) {
         if (getDependentView() == null || child == null) {
             return;
@@ -157,6 +159,11 @@ public class FloatExpandSearchBehavior extends CoordinatorLayout.Behavior<View> 
         childTopMargin = (childTopMargin < 0) ? childLayoutParams.topMargin : childTopMargin;
         childLayoutParams.topMargin = (int) (childTopMargin * progress);
         childLayoutParams.topMargin = (childLayoutParams.topMargin >= targetY) ? childLayoutParams.topMargin : targetY;
+        if (progress == 0 && lastTopMargin == 0 && child.getY() == targetY) {
+            return;
+        }
+        LogTrack.i("" + progress);
+        lastTopMargin = childLayoutParams.topMargin;
         child.setLayoutParams(childLayoutParams);
     }
 
@@ -188,14 +195,14 @@ public class FloatExpandSearchBehavior extends CoordinatorLayout.Behavior<View> 
         return dependentView == null ? 0 : dependentView.getMeasuredHeight();
     }
 
+
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-        //LogTrack.i(verticalOffset);
         if (coordinatorLayout == null || child == null) {
             return;
         }
+
         offsetChildView(-verticalOffset);
         autoShowOrHide(true);
-
     }
 }
